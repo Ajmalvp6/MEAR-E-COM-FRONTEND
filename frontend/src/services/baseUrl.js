@@ -1,0 +1,1 @@
+export const BaseUrl = 'https://mern-e-com-server.onrender.com'
