@@ -3,6 +3,9 @@ import "./css/LoginSignup.css";
 import { loginApi, registerApi } from "../services/allApi";
 import { Navigate, useNavigate } from "react-router-dom";
 import { ShopContext } from "../Context/ShopContext";
+import { Bounce, toast } from "react-toastify";
+
+
 
 const LoginSignup = () => {
   const [login, setlogin] = useState(true);
@@ -31,7 +34,18 @@ const LoginSignup = () => {
     e.preventDefault();
 
     if(!formData.email || !formData.password){
-      alert('please fill all fields')
+     
+      toast.error('please fill all fields', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+        });
       return
     }
 
@@ -46,7 +60,18 @@ const LoginSignup = () => {
       localStorage.setItem("token", result.data.token);
       getCartProduct()
       navigate('/')
-      alert("login success");
+      
+      toast.success('login success', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+        });
     } else {
       alert(result.response.data.message);
     }

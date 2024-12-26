@@ -1,5 +1,10 @@
 import React, { createContext, useEffect, useState } from "react";
-import { addtoCartApi, getAllProductApi, getCartProdutcsApi, removeFromCartApi } from "../services/allApi";
+import {
+  addtoCartApi,
+  getAllProductApi,
+  getCartProdutcsApi,
+  removeFromCartApi,
+} from "../services/allApi";
 
 export const ShopContext = createContext(null);
 
@@ -20,8 +25,8 @@ const ShopContextProvider = (props) => {
   useEffect(() => {
     getAllProduct();
 
-    if(localStorage.getItem('token')){
-      getCartProduct()
+    if (localStorage.getItem("token")) {
+      getCartProduct();
     }
   }, []);
 
@@ -47,37 +52,32 @@ const ShopContextProvider = (props) => {
 
       const result = await addtoCartApi(JSON.stringify(bodyData), headers);
 
+      console.log(result);
+      
+
       setCartItems(result.data.result);
+
       
       
     }
   };
 
-  // getcartproductApi 
+  // getcartproductApi
 
-  const getCartProduct=async()=>{
-
-    
-
+  const getCartProduct = async () => {
     const headers = {
       "Content-Type": "application/json",
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     };
 
-    const result = await getCartProdutcsApi(headers)
+    const result = await getCartProdutcsApi(headers);
 
     setCartItems(result.data);
-    
-    
-
-
-  }
+  };
 
   const removeFromCart = async (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
-    if(localStorage.getItem('token')){
-
-
+    if (localStorage.getItem("token")) {
       const bodyData = {
         itemId: itemId,
       };
@@ -87,15 +87,9 @@ const ShopContextProvider = (props) => {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       };
 
-
-      const result = await removeFromCartApi(bodyData,headers)
-      
-      alert(result.data.message)
-      
-
+      const result = await removeFromCartApi(bodyData, headers);
 
       
-
     }
   };
 
@@ -131,7 +125,7 @@ const ShopContextProvider = (props) => {
     getDefaultCart,
     addToCart,
     removeFromCart,
-    getCartProduct
+    getCartProduct,
   };
   return (
     <ShopContext.Provider value={contextValue}>

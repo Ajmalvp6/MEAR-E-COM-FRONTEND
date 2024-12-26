@@ -50,7 +50,7 @@ const Navbar = () => {
 
        :
 
-       <Link to={'/login'}><button>Login</button></Link>
+       <Link  to={'/login'}><button style={{cursor:'pointer'}}>Login</button></Link>
        
       }
        

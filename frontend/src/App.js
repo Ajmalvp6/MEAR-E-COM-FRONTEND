@@ -1,6 +1,5 @@
 
 import { Route, Routes } from 'react-router-dom';
-import './App.css';
 import Navbar from './Components/Navbar/Navbar';
 import Shop from './Pages/Shop';
 import ShopCategory from './Pages/ShopCategory';
@@ -11,11 +10,15 @@ import Footer from './Components/Footer/Footer';
 import men_banner from './Assets/banner_mens.png'
 import women_banner from './Assets/banner_women.png'
 import kid_banner from './Assets/banner_kids.png'
+import { ToastContainer } from 'react-toastify';
 
 
 function App() {
   return (
     <div>
+
+      <ToastContainer/>
+
       <Navbar/>
       <Routes>
         <Route path='/' element={<Shop/>}/>
