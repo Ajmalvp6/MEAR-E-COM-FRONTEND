@@ -61,3 +61,9 @@ export const removeFromCartApi=async(bodyData,headers)=>{
     return await commonApi('post',`${BaseUrl}/removefromcart`,bodyData,headers)
 
 }
+
+// related product Api 
+
+export const relatedProductApi = async (productId) => {
+  return await commonApi("get", `${BaseUrl}/relatedproducts/${productId}`, {}, {});
+}

@@ -9,6 +9,7 @@ const ProductDisplay = (props) => {
     const {product} = props;
     
     
+    
     const {addToCart} = useContext(ShopContext)
 
   return (
