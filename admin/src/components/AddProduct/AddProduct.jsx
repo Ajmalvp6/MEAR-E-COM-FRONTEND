@@ -4,6 +4,7 @@ import "./AddProduct.css";
 import uplod_area from "../../Assets/upload_area.svg";
 import { useState } from "react";
 import { addProductApi, imageUploadApi } from "../../services/allApis.js";
+import { Bounce, toast } from "react-toastify";
 
 
 
@@ -45,6 +46,9 @@ const AddProduct = () => {
       }
 
       const result = await imageUploadApi(formData,headers)
+
+      console.log(result);
+      
       
       
       
@@ -62,12 +66,51 @@ const AddProduct = () => {
         
 
         if (product.data.success) {
-          alert(product.data.message);
+
+          setProductDetails({
+            name:"",image:"",new_price:"",old_price:""
+          })
+
+          setImage("")
+         
+          toast.success(`${product?.data.message}`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+            });
         } else {
-          alert("Product adding failed.");
+         
+          toast.error(`Product adding failed.`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+            });
         }
       } else {
-        alert("Image upload failed.");
+        
+        toast.error(`Image upload failed.`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+          });
       }
     } catch (error) {
       alert("An error occurred while adding the product.");

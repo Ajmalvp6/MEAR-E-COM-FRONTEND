@@ -3,6 +3,10 @@ import './ListProduct.css'
 import { allProductsApi, removeProductApi } from '../../services/allApis'
 import cross_icon from '../../Assets/cross_icon.png'
 import { BaseUrl } from '../../services/baseUrl'
+import { Bounce, toast } from 'react-toastify'
+
+
+
 
 
 
@@ -36,7 +40,18 @@ const ListProduct = () => {
 
     await removeProductApi(bodyData,headers)
 
-    alert(`${name} removed successfully`)
+    
+    toast.success(`${name} removed successfully`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+      });
 
     getallproducts()
   }
@@ -47,7 +62,7 @@ const ListProduct = () => {
     getallproducts()
   },[])
 
-  console.log(allproducts);
+  
   
 
  
@@ -72,7 +87,7 @@ const ListProduct = () => {
         <hr />
 
 
-        {allproducts.map((product,index)=>{
+        {allproducts?.map((product,index)=>{
           return <> <div key={index} className="listproduct-format-main listproduct-format">
               
             <img src={`${BaseUrl}/uploads/${product.image}`} alt="" className="listproduct-product-icon" />
